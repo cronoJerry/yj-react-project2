@@ -41,6 +41,7 @@ function Layout({ children }) {
             <HStack
               h={'inherit'}
               alignItems={'center'}
+              justifyContent={'space-around'}
             >
               <Link to="/">
                 <VStack w="full" color="white">
@@ -70,4 +71,3 @@ function Layout({ children }) {
 }
 
 export default Layout;
-

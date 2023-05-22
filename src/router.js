@@ -1,11 +1,11 @@
-import App from './App';
 import { createBrowserRouter } from 'react-router-dom';
 import Contact from './Contact';
 import Profile from './Profile';
+import Home from './Home';
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <App />,
+    element: <Home />,
   },
   {
     path: '/profile',

@@ -4,8 +4,9 @@ import {
   AiOutlineHome,
   AiOutlineProfile,
   AiOutlineContacts,
+  AiFillCaretLeft,
 } from 'react-icons/ai';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const GNB = [
   { title: 'Home', href: '/', icon: AiOutlineHome },
@@ -13,9 +14,12 @@ const GNB = [
   { title: 'Contact', href: '/contact', icon: AiOutlineContacts },
 ];
 
-function Layout({ children }) {
+function Layout({ children, canGoBack, title }) {
   const location = useLocation();
-  console.log(location.pathname);
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate(-1);
+  };
   return (
     <>
       {/* header */}
@@ -32,50 +36,68 @@ function Layout({ children }) {
             top={0}
             zIndex={9}
           >
-            <AiFillApple size={32} color="white" />
+            {canGoBack ? (
+              <Box
+                onClick={handleClick}
+                position={'absolute'}
+                left={'20px'}
+                cursor="pointer"
+              >
+                <AiFillCaretLeft color="white" size={'20px'} />
+              </Box>
+            ) : null}
+            {canGoBack ? (
+              <Text color={'white'}>{title}</Text>
+            ) : (
+              <AiFillApple size={32} color="white" />
+            )}
           </Box>
           {/* header */}
           {/* main Contents */}
           {children}
           {/* main Contents */}
           {/* footer */}
-          <Box
-            w={'inherit'}
-            h={'120px'}
-            bg="blackAlpha.900"
-            position={'fixed'}
-            bottom={0}
-          >
-            <HStack
-              h={'inherit'}
-              alignItems={'center'}
-              justifyContent={'space-around'}
+          {canGoBack ? null : (
+            <Box
+              w={'inherit'}
+              h={'120px'}
+              bg="blackAlpha.900"
+              position={'fixed'}
+              bottom={0}
             >
-              {GNB.map((item) => (
-                <Box w="full">
-                  <Link to={item.href}>
-                    <VStack w="full" color="white">
-                      <item.icon
-                        size={24}
-                        color={
-                          location.pathname === item.href
-                            ? 'rgb(229,57,53)'
-                            : 'white'
-                        }
-                      />
-                      <Text
-                        color={
-                          location.pathname === item.href ? 'red.500' : 'white'
-                        }
-                      >
-                        {item.title}
-                      </Text>
-                    </VStack>
-                  </Link>
-                </Box>
-              ))}
-            </HStack>
-          </Box>
+              <HStack
+                h={'inherit'}
+                alignItems={'center'}
+                justifyContent={'space-around'}
+              >
+                {GNB.map((item, i) => (
+                  <Box w="full" key={i}>
+                    <Link to={item.href}>
+                      <VStack w="full" color="white">
+                        <item.icon
+                          size={24}
+                          color={
+                            location.pathname === item.href
+                              ? 'rgb(229,57,53)'
+                              : 'white'
+                          }
+                        />
+                        <Text
+                          color={
+                            location.pathname === item.href
+                              ? 'red.500'
+                              : 'white'
+                          }
+                        >
+                          {item.title}
+                        </Text>
+                      </VStack>
+                    </Link>
+                  </Box>
+                ))}
+              </HStack>
+            </Box>
+          )}
         </VStack>
       </Box>
       {/* footer */}

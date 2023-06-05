@@ -68,7 +68,7 @@ export default function Home() {
                   left={0}
                   w={'full'}
                   h={'full'}
-                  bgGradient={'linear(to-b, rgba(0,0,0,0.1), rgba(0,0,0,0.9)'}
+                  bgGradient={'linear(to-b, rgba(0,0,0,0.1), rgba(0,0,0,0.9))'}
                 >
                   <Text
                     color={'white'}

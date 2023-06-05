@@ -5,9 +5,17 @@ import {
   AiOutlineProfile,
   AiOutlineContacts,
 } from 'react-icons/ai';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+
+const GNB = [
+  { title: 'Home', href: '/', icon: AiOutlineHome },
+  { title: 'Profile', href: '/profile', icon: AiOutlineProfile },
+  { title: 'Contact', href: '/contact', icon: AiOutlineContacts },
+];
 
 function Layout({ children }) {
+  const location = useLocation();
+  console.log(location.pathname);
   return (
     <>
       {/* header */}
@@ -43,24 +51,29 @@ function Layout({ children }) {
               alignItems={'center'}
               justifyContent={'space-around'}
             >
-              <Link to="/">
-                <VStack w="full" color="white">
-                  <AiOutlineHome />
-                  <Text>Home</Text>
-                </VStack>
-              </Link>
-              <Link to="/profile">
-                <VStack w="full" color="white">
-                  <AiOutlineProfile />
-                  <Text>Profile</Text>
-                </VStack>
-              </Link>
-              <Link to="/contact">
-                <VStack w="full" color="white">
-                  <AiOutlineContacts />
-                  <Text>ContactUs</Text>
-                </VStack>
-              </Link>
+              {GNB.map((item) => (
+                <Box w="full">
+                  <Link to={item.href}>
+                    <VStack w="full" color="white">
+                      <item.icon
+                        size={24}
+                        color={
+                          location.pathname === item.href
+                            ? 'rgb(229,57,53)'
+                            : 'white'
+                        }
+                      />
+                      <Text
+                        color={
+                          location.pathname === item.href ? 'red.500' : 'white'
+                        }
+                      >
+                        {item.title}
+                      </Text>
+                    </VStack>
+                  </Link>
+                </Box>
+              ))}
             </HStack>
           </Box>
         </VStack>

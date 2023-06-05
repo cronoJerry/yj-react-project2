@@ -1,6 +1,6 @@
-import { Box, HStack, Image, Text, VStack, transition } from '@chakra-ui/react';
+import { Box, HStack, Text, VStack } from '@chakra-ui/react';
 import Layout from './Layout';
-import { Avatar, AvatarBadge, AvatarGroup } from '@chakra-ui/react';
+import { Avatar } from '@chakra-ui/react';
 
 export default function Profile() {
   return (
@@ -72,4 +72,3 @@ export default function Profile() {
     </Layout>
   );
 }
-

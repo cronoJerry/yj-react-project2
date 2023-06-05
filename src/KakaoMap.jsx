@@ -5,18 +5,6 @@ export default function KakaoMap() {
   //loading 하자마자 실행
   //need to study - useEffect
   useEffect(() => {
-    // const mapContainer = document.getElementById('map');
-    // const mapOption = {
-    //   center: new window.kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-    //   level: 3, // 지도의 확대 레벨
-    // };
-    // const map = new window.kakao.maps.Map(mapContainer, mapOption);
-    // const markerPosition = new window.kakao.maps.LatLng(33.450701, 126.570667);
-    // const marker = new window.kakao.maps.Marker({
-    //   position: markerPosition,
-    // });
-    // marker.setMap(map);
-
     var mapContainer = document.getElementById('map'), // 지도를 표시할 div
       mapOption = {
         center: new window.kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
@@ -71,4 +59,3 @@ export default function KakaoMap() {
   }, []);
   return <Box as="div" w={'full'} h={'300px'} id="map"></Box>;
 }
-
